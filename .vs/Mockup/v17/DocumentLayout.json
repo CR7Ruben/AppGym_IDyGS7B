@@ -1,0 +1,45 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2FFC6799-8079-4CC8-A23C-3077F4A0BEAC}|Mockup.csproj|c:\\users\\ragon\\onedrive\\escritorio\\rubenvisualstudio\\mockup\\mvvm\\view\\newpasswordpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2FFC6799-8079-4CC8-A23C-3077F4A0BEAC}|Mockup.csproj|solutionrelative:mvvm\\view\\newpasswordpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NewPasswordPage.xaml",
+              "DocumentMoniker": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\NewPasswordPage.xaml",
+              "RelativeDocumentMoniker": "MVVM\\View\\NewPasswordPage.xaml",
+              "ToolTip": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\NewPasswordPage.xaml",
+              "RelativeToolTip": "MVVM\\View\\NewPasswordPage.xaml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACcAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-18T18:14:16.668Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
