@@ -1,6 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Mockup.MVVM.ModelViewModel"
+             xmlns:local="clr-namespace:Mockup.Converters"
              x:Class="Mockup.UserDashboardPage"
              Title="Iron Revolution Center">
 
@@ -52,10 +53,16 @@
 
                         <!-- Botón para regenerar código -->
                         <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                            <Label Text="Nuevo codigo de acceso: " FontSize="16" FontAttributes="Bold"/>
                             <ImageButton Source="refresh.png"
-                                         WidthRequest="570"
+                                         WidthRequest="30"
                                          HeightRequest="30"
                                          Command="{Binding RegenerateCodeCommand}" />
+                            <Label Text="{Binding NewCode}" 
+                                   FontSize="16" 
+                                   TextColor="Green"
+                                   VerticalOptions="Center"
+                                   IsVisible="{Binding NewCode, Converter={StaticResource StringIsNotNullOrEmptyConverter}}"/>
                         </HorizontalStackLayout>
                     </StackLayout>
                 </VerticalStackLayout>
@@ -63,7 +70,6 @@
 
             <!-- Rutinas y selección de actividad -->
             <VerticalStackLayout Spacing="20">
-                <!-- Mostrar/Ocultar botones de los días de la semana -->
                 <Button Text="Rutinas"
                         FontSize="16"
                         BackgroundColor="Black"
@@ -135,7 +141,7 @@
                         Command="{Binding ToggleDatePickerCommand}"
                         HorizontalOptions="FillAndExpand"/>
 
-                <!-- DatePicker para seleccionar fecha de actividad -->
+                <!-- Botón para actividad -->
                 <DatePicker x:Name="ActivityDatePicker"
                             Date="{Binding SelectedDate}"
                             Format="D"
