@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-
+using Mockup.MVVM;
 namespace Mockup
 {
     public static class MauiProgram

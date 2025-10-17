@@ -3,15 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\UserDashboardPage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MVVM\\View\\UserDashboardPage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MauiProgram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MauiProgram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ragon\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.0\\buildTransitive\\CommunityToolkit.Mvvm.WindowsSdk.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FFC6799-8079-4CC8-A23C-3077F4A0BEAC}|Mockup.csproj|c:\\users\\ragon\\onedrive\\escritorio\\rubenvisualstudio\\mockup\\mvvm\\modelviewmodel\\userdashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FFC6799-8079-4CC8-A23C-3077F4A0BEAC}|Mockup.csproj|solutionrelative:mvvm\\modelviewmodel\\userdashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\Mockup.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Mockup.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FFC6799-8079-4CC8-A23C-3077F4A0BEAC}|Mockup.csproj|c:\\users\\ragon\\onedrive\\escritorio\\rubenvisualstudio\\mockup\\mvvm\\view\\userdashboardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2FFC6799-8079-4CC8-A23C-3077F4A0BEAC}|Mockup.csproj|solutionrelative:mvvm\\view\\userdashboardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\LoginPage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MVVM\\View\\LoginPage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\ModelViewModel\\UserDashboardViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MVVM\\ModelViewModel\\UserDashboardViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,7 +33,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -29,41 +41,78 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "Mockup.csproj",
+              "DocumentMoniker": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\Mockup.csproj",
+              "RelativeDocumentMoniker": "Mockup.csproj",
+              "ToolTip": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\Mockup.csproj",
+              "RelativeToolTip": "Mockup.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-21T23:55:36.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "CommunityToolkit.Mvvm.WindowsSdk.targets",
               "DocumentMoniker": "C:\\Users\\ragon\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.0\\buildTransitive\\CommunityToolkit.Mvvm.WindowsSdk.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.0\\buildTransitive\\CommunityToolkit.Mvvm.WindowsSdk.targets",
               "ToolTip": "C:\\Users\\ragon\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.0\\buildTransitive\\CommunityToolkit.Mvvm.WindowsSdk.targets",
               "RelativeToolTip": "..\\..\\..\\..\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.0\\buildTransitive\\CommunityToolkit.Mvvm.WindowsSdk.targets",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAAAFUAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAArwDwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-03-25T03:51:24.105Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserDashboardPage.xaml",
-              "DocumentMoniker": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\UserDashboardPage.xaml",
-              "RelativeDocumentMoniker": "MVVM\\View\\UserDashboardPage.xaml",
-              "ToolTip": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\UserDashboardPage.xaml",
-              "RelativeToolTip": "MVVM\\View\\UserDashboardPage.xaml",
-              "ViewState": "AgIAAHoAAAAAAAAAAAAUwJgAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T03:02:32.513Z",
+              "WhenOpened": "2025-09-21T22:02:14.367Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "MauiProgram.cs",
+              "ToolTip": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MauiProgram.cs",
+              "RelativeToolTip": "MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T23:56:05.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserDashboardPage.xaml",
+              "DocumentMoniker": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\UserDashboardPage.xaml",
+              "RelativeDocumentMoniker": "MVVM\\View\\UserDashboardPage.xaml",
+              "ToolTip": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\UserDashboardPage.xaml",
+              "RelativeToolTip": "MVVM\\View\\UserDashboardPage.xaml",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAAC4AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-07T16:45:04.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoginPage.xaml",
+              "DocumentMoniker": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\LoginPage.xaml",
+              "RelativeDocumentMoniker": "MVVM\\View\\LoginPage.xaml",
+              "ToolTip": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\View\\LoginPage.xaml",
+              "RelativeToolTip": "MVVM\\View\\LoginPage.xaml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-07T16:53:29.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "UserDashboardViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\ModelViewModel\\UserDashboardViewModel.cs",
               "RelativeDocumentMoniker": "MVVM\\ModelViewModel\\UserDashboardViewModel.cs",
               "ToolTip": "C:\\Users\\ragon\\OneDrive\\Escritorio\\RubenVisualStudio\\Mockup\\MVVM\\ModelViewModel\\UserDashboardViewModel.cs",
               "RelativeToolTip": "MVVM\\ModelViewModel\\UserDashboardViewModel.cs",
-              "ViewState": "AgIAAAwBAAAAAAAAAAAQwCoBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T02:59:53.3Z",
+              "WhenOpened": "2025-04-07T16:44:59.912Z",
               "EditorCaption": ""
             }
           ]

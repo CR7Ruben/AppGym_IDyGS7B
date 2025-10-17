@@ -8,7 +8,6 @@ using Microsoft.Maui.Controls;
 
 namespace Mockup.MVVM.ModelViewModel
 {
-    [QueryProperty(nameof(Username), "username")]
     [QueryProperty(nameof(UserNumber), "UserNumber")]
     public class UserDashboardViewModel : INotifyPropertyChanged
     {
@@ -47,10 +46,10 @@ namespace Mockup.MVVM.ModelViewModel
         }
 
         // Propiedades para la información adicional
-        public string BloodType { get; set; } = "O+";
+        public string BloodType { get; set; } = "B+";
         public string Membership { get; set; } = "Mensual";
-        public string ExpirationDate { get; set; } = "31/12/2025";
-        public string Observations { get; set; } = "Era adicto a la adrenalina";
+        public string ExpirationDate { get; set; } = "11 /04 /2025";
+        public string Observations { get; set; } = "Alergia al polvo";
 
         // Propiedades para las opciones de rutina
         public ObservableCollection<string> RoutineOptions { get; } = new ObservableCollection<string>
@@ -155,7 +154,7 @@ namespace Mockup.MVVM.ModelViewModel
         private async Task RegenerateCode()
         {
             Random random = new Random();
-            NewCode = random.Next(100000, 999999).ToString();
+            NewCode = random.Next(10000, 99999).ToString();
         }
 
         private async Task Logout()
@@ -284,7 +283,7 @@ namespace Mockup.MVVM.ModelViewModel
 
         private async void ShowActivityInfo()
         {
-            string branch = "\nPuerto de Mazatlán 4602, México, 85190 Cd. Obregón, Son.";
+            string branch = "\nTabasco 388, Ciudad Obregón";
             string formattedDate = SelectedDate.ToString("D");
             await Shell.Current.DisplayAlert("Actividad:",
                 $"Fecha de entrada:\n {formattedDate}\nSucursal: {branch}",

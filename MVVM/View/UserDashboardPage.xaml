@@ -1,7 +1,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Mockup.MVVM.ModelViewModel"
-             xmlns:local="clr-namespace:Mockup.Converters"
              x:Class="Mockup.UserDashboardPage"
              Title="Iron Revolution Center">
 
@@ -21,11 +20,10 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
             <!-- Información del usuario -->
-            <HorizontalStackLayout Spacing="10">
-                <Image Source="user.png" WidthRequest="40" HeightRequest="40" />
+            <HorizontalStackLayout Spacing="5">
+                <Image Source="user.png" WidthRequest="35" HeightRequest="34" />
                 <VerticalStackLayout>
-                    <Label Text="{Binding Username}" FontSize="20" FontAttributes="Bold" />
-                    <Label Text="{Binding UserNumber}" FontSize="16" TextColor="Gray" />
+                    <Label Text="{Binding UserNumber}" FontSize="20" FontAttributes="Bold" TextColor="Black" />
                 </VerticalStackLayout>
             </HorizontalStackLayout>
 
@@ -64,6 +62,8 @@
                                    VerticalOptions="Center"
                                    IsVisible="{Binding NewCode, Converter={StaticResource StringIsNotNullOrEmptyConverter}}"/>
                         </HorizontalStackLayout>
+                        
+
                     </StackLayout>
                 </VerticalStackLayout>
             </Frame>
