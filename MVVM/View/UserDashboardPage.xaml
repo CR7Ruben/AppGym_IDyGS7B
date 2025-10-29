@@ -13,24 +13,11 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
-            <!--
-            <HorizontalStackLayout Spacing="10">
-                <Image Source="user.png" WidthRequest="40" HeightRequest="40" />
 
-                <VerticalStackLayout>
-                    <Label Text="{Binding Username}" FontSize="20" FontAttributes="Bold" />
-                    <Label Text="{Binding UserNumber}" FontSize="16" TextColor="Gray" />
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
-            -->
-
+            <!-- Usuario -->
             <HorizontalStackLayout Spacing="10">
-                <!-- Icono de usuario -->
                 <Image Source="user.png" WidthRequest="35" HeightRequest="35" />
-
-                <!-- Nombre del usuario -->
                 <VerticalStackLayout>
-                    <!--<Label Text="{Binding Username}" FontSize="20" FontAttributes="Bold"/>-->
                     <Label Text="{Binding UserNumber}" FontSize="21" TextColor="Gray" />
                 </VerticalStackLayout>
             </HorizontalStackLayout>
@@ -56,23 +43,29 @@
                             <Label Text="Observaciones: " FontSize="16" FontAttributes="Bold"/>
                             <Label Text="{Binding Observations}" FontSize="16" />
                         </HorizontalStackLayout>
-                        <!-- Icono para regenerar código -->
-                        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
-                            <Label Text="" FontSize="16" FontAttributes="Bold"/>
-                            <ImageButton Source="refresh.png" WidthRequest="570" HeightRequest="30" Clicked="OnRegenerateCodeClicked" />
-                        </HorizontalStackLayout>
+
+                        <!--QR dinámico -->
+                        <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Margin="0,10,0,0">
+                            <Label  Text="Tu código de acceso:" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" />
+                            <Image x:Name="QrImage" WidthRequest="250" HeightRequest="250" />
+                        </VerticalStackLayout>
                     </StackLayout>
                 </VerticalStackLayout>
             </Frame>
 
+            <!-- Botón de Rutinas -->
             <VerticalStackLayout Spacing="20">
-                <Button x:Name="RoutineButton" Text="Rutinas" FontSize="16" BackgroundColor="Black" TextColor="White" Clicked="OnShowRoutineButtons"
-                    HorizontalOptions="FillAndExpand"/>
+                <Button x:Name="RoutineButton" 
+                        Text="Rutinas" 
+                        FontSize="16" 
+                        BackgroundColor="Black" 
+                        TextColor="White" 
+                        Clicked="OnShowRoutineButtons"
+                        HorizontalOptions="FillAndExpand"/>
 
-                <!-- Botones centrados en el grid -->
+                <!-- Días -->
                 <VerticalStackLayout x:Name="DaysButtonsLayout" IsVisible="False" Spacing="8" HorizontalOptions="Center">
                     <Grid ColumnSpacing="10" RowSpacing="10" HorizontalOptions="Center">
-                        <!-- Definir filas y columnas -->
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -84,60 +77,31 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Primera fila -->
-                        <Button Text="Lunes" Clicked="OnDaySelected" CommandParameter="RoutineMondayPage" 
-                            BackgroundColor="LightGray" TextColor="Black" HeightRequest="40" WidthRequest="100" FontSize="14"
-                            Grid.Row="0" Grid.Column="0"/>
-
-                        <Button Text="Martes" Clicked="OnDaySelected" CommandParameter="RoutineTuesdayPage" 
-                            BackgroundColor="LightGray" TextColor="Black" HeightRequest="40" WidthRequest="100" FontSize="14"
-                            Grid.Row="0" Grid.Column="1"/>
-
-                        <Button Text="Miércoles" Clicked="OnDaySelected" CommandParameter="RoutineWednesdayPage" 
-                            BackgroundColor="LightGray" TextColor="Black" HeightRequest="40" WidthRequest="100" FontSize="14"
-                            Grid.Row="0" Grid.Column="2"/>
-
-                        <!-- Segunda fila -->
-                        <Button Text="Jueves" Clicked="OnDaySelected" CommandParameter="RoutineThursdayPage" 
-                            BackgroundColor="LightGray" TextColor="Black" HeightRequest="40" WidthRequest="100" FontSize="14"
-                            Grid.Row="1" Grid.Column="0"/>
-
-                        <Button Text="Viernes" Clicked="OnDaySelected" CommandParameter="RoutineFridayPage" 
-                            BackgroundColor="LightGray" TextColor="Black" HeightRequest="40" WidthRequest="100" FontSize="14"
-                            Grid.Row="1" Grid.Column="1"/>
-
-                        <Button Text="Sábado" Clicked="OnDaySelected" CommandParameter="RoutineSaturdayPage" 
-                            BackgroundColor="LightGray" TextColor="Black" HeightRequest="40" WidthRequest="100" FontSize="14"
-                            Grid.Row="1" Grid.Column="2"/>
-
-                        <!-- Domingo centrado -->
-                        <Button Text="Domingo" Clicked="OnDaySelected" CommandParameter="RoutineSundayPage"
-                            BackgroundColor="LightGray" TextColor="Black" HeightRequest="42" WidthRequest="100" FontSize="14"
-                            Grid.Row="2" Grid.Column="1" HorizontalOptions="Center"/>
+                        <Button Text="Lunes" BackgroundColor="LightGray" TextColor="Black" Clicked="OnDaySelected" CommandParameter="RoutineMondayPage" Grid.Row="0" Grid.Column="0"/>
+                        <Button Text="Martes" BackgroundColor="LightGray" TextColor="Black" Clicked="OnDaySelected" CommandParameter="RoutineTuesdayPage" Grid.Row="0" Grid.Column="1"/>
+                        <Button Text="Miércoles" BackgroundColor="LightGray" TextColor="Black" Clicked="OnDaySelected" CommandParameter="RoutineWednesdayPage" Grid.Row="0" Grid.Column="2"/>
+                        <Button Text="Jueves" BackgroundColor="LightGray" TextColor="Black" Clicked="OnDaySelected" CommandParameter="RoutineThursdayPage" Grid.Row="1" Grid.Column="0"/>
+                        <Button Text="Viernes" BackgroundColor="LightGray" TextColor="Black" Clicked="OnDaySelected" CommandParameter="RoutineFridayPage" Grid.Row="1" Grid.Column="1"/>
+                        <Button Text="Sábado" BackgroundColor="LightGray" TextColor="Black" Clicked="OnDaySelected" CommandParameter="RoutineSaturdayPage" Grid.Row="1" Grid.Column="2"/>
+                        <Button Text="Domingo" BackgroundColor="LightGray" TextColor="Black" Clicked="OnDaySelected" CommandParameter="RoutineSundayPage" Grid.Row="2" Grid.Column="1"/>
                     </Grid>
                 </VerticalStackLayout>
 
-                <Picker x:Name="RoutinePicker"
-                ItemsSource="{Binding RoutineOptions}"
-                SelectedItem="{Binding SelectedRoutine}"
-                Title="Selecciona el músculo a entrenar"
-                IsVisible="False"/>
-
-                <Picker x:Name="DetailedRoutinePicker"
-                ItemsSource="{Binding DetailedRoutines}"
-                SelectedItem="{Binding SelectedDetailedRoutine}"
-                Title="Selecciona una rutina detallada"
-                IsVisible="{Binding IsRoutineVisible}"/>
-
-                <Button x:Name="ActivityButton" Text="Actividad" FontSize="16" BackgroundColor="Black" TextColor="White" Clicked="OnShowDatePicker"
-                    HorizontalOptions="FillAndExpand"/>
+                <!-- Actividad -->
+                <Button x:Name="ActivityButton" 
+                        Text="Actividad" 
+                        FontSize="16" 
+                        BackgroundColor="Black" 
+                        TextColor="White" 
+                        Clicked="OnShowDatePicker"
+                        HorizontalOptions="FillAndExpand"/>
 
                 <DatePicker x:Name="ActivityDatePicker"
-                    Date="{Binding SelectedDate}"
-                    Format="D"
-                    IsVisible="False"
-                    MaximumDate="{Binding Today}"
-                    DateSelected="OnDateSelected"/>
+                            Date="{Binding SelectedDate}"
+                            Format="D"
+                            IsVisible="False"
+                            MaximumDate="{Binding Today}"
+                            DateSelected="OnDateSelected"/>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

@@ -1,27 +1,30 @@
-using Microsoft.Maui.Controls;
+ï»¿using Microsoft.Maui.Controls;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using Microsoft.Maui.Dispatching;
+using QRCoder;
+using Microsoft.Maui.Graphics;
 
 namespace Mockup
 {
-    //[QueryProperty(nameof(Username), "username")]//
     [QueryProperty(nameof(UserNumber), "userNumber")]
-
     public partial class UserDashboardPage : ContentPage
     {
+        //Propiedades privadas
         private string _username;
         private string _userNumber;
         private bool _isRoutinePickerVisible;
         private bool _isDatePickerVisible;
+        private IDispatcherTimer qrTimer;
 
-        private bool isRoutineOpen = false;  // Bandera para controlar si las rutinas están abiertas
-        private bool isActivityOpen = false; // Bandera para controlar si la actividad está abierta
-
+        //Lista de rutinas disponibles
         public ObservableCollection<string> RoutineOptions { get; } = new ObservableCollection<string>
         {
-            "Pecho", "Bíceps", "Tríceps", "Espalda", "Pierna"
+            "Pecho", "BÃ­ceps", "TrÃ­ceps", "Espalda", "Pierna"
         };
 
+        //Rutina seleccionada
         private string _selectedRoutine;
         public string SelectedRoutine
         {
@@ -30,34 +33,10 @@ namespace Mockup
             {
                 _selectedRoutine = value;
                 OnPropertyChanged(nameof(SelectedRoutine));
-                UpdateDetailedRoutines();  // Actualizar las rutinas detalladas
-                IsRoutineVisible = !string.IsNullOrEmpty(value); // Hacer visible el Picker de rutinas detalladas
             }
         }
 
-        private ObservableCollection<string> _detailedRoutines = new ObservableCollection<string>();
-        public ObservableCollection<string> DetailedRoutines
-        {
-            get => _detailedRoutines;
-            set
-            {
-                _detailedRoutines = value;
-                OnPropertyChanged(nameof(DetailedRoutines));
-            }
-        }
-
-        private string _selectedDetailedRoutine;
-        public string SelectedDetailedRoutine
-        {
-            get => _selectedDetailedRoutine;
-            set
-            {
-                _selectedDetailedRoutine = value;
-                OnPropertyChanged(nameof(SelectedDetailedRoutine));
-                ShowRoutineDetailModal(); // Mostrar el modal cuando se selecciona una rutina
-            }
-        }
-
+        //Fecha seleccionada
         private DateTime _selectedDate = DateTime.Today;
         public DateTime SelectedDate
         {
@@ -69,18 +48,7 @@ namespace Mockup
             }
         }
 
-        // Esto controla la visibilidad del Picker de rutinas detalladas
-        private bool _isRoutineVisible;
-        public bool IsRoutineVisible
-        {
-            get => _isRoutineVisible;
-            set
-            {
-                _isRoutineVisible = value;
-                OnPropertyChanged(nameof(IsRoutineVisible));
-            }
-        }
-
+        //Nombre de usuario
         public string Username
         {
             get => _username;
@@ -91,6 +59,7 @@ namespace Mockup
             }
         }
 
+        //NÃºmero de usuario
         public string UserNumber
         {
             get => _userNumber;
@@ -101,243 +70,103 @@ namespace Mockup
             }
         }
 
-        // Método para generar un código de 6 dígitos
-        private string GenerateAccessCode()
-        {
-            Random random = new Random();
-            return random.Next(100000, 999999).ToString(); // Genera un número aleatorio de 6 dígitos
-        }
-
-        // Evento para regenerar el código de acceso
-        private void OnRegenerateCodeClicked(object sender, EventArgs e)
-        {
-            // Generar un nuevo código de acceso
-            string newCode = GenerateAccessCode();
-
-            // Mostrar el código generado (esto puede ser almacenado o mostrado como quieras)
-            DisplayAlert("Nuevo código", $"El nuevo código de acceso es: {newCode}", "OK");
-        }
-
+        //Constructor
         public UserDashboardPage()
         {
             InitializeComponent();
             BindingContext = this;
 
-            // Obtener la zona horaria de Ciudad Obregón, Sonora, México (UTC-7)
+            // ðŸ“† Establecer fecha mÃ¡xima (zona horaria de Sonora)
             TimeZoneInfo sonoraTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Hermosillo");
-
-            // Obtener la fecha y hora actual en la zona horaria de Sonora
             DateTime sonoraNow = TimeZoneInfo.ConvertTime(DateTime.Now, sonoraTimeZone);
-
-            // Establecer la fecha máxima del DatePicker a la fecha actual en la zona horaria de Sonora
             ActivityDatePicker.MaximumDate = sonoraNow.Date;
+
+            // Iniciar QR dinÃ¡mico
+            GenerateDynamicQRCode();
+            StartQrTimer();
         }
 
-        // Mostrar y ocultar el Picker de rutinas
-        private void OnShowRoutinePicker(object sender, EventArgs e)
+        //Generar un QR dinÃ¡mico con contenido Ãºnico temporal (puedes personalizarlo)
+        private void GenerateDynamicQRCode()
         {
-            // Si la actividad está abierta, no permitimos abrir las rutinas
-            if (isActivityOpen)
+            // El cÃ³digo puede incluir el nÃºmero de usuario + timestamp para mÃ¡s seguridad
+            string uniqueCode = $"{UserNumber}-{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}";
+
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
             {
-                return;
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(uniqueCode, QRCodeGenerator.ECCLevel.Q);
+                PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
+                byte[] qrCodeBytes = qrCode.GetGraphic(20);
+
+                // Mostrar QR en la vista
+                QrImage.Source = ImageSource.FromStream(() => new MemoryStream(qrCodeBytes));
             }
 
-            // Si ya se ha seleccionado una rutina, desmarcarla y mostrar el picker nuevamente
-            if (!string.IsNullOrEmpty(SelectedRoutine))
-            {
-                SelectedRoutine = null;  // Borra la rutina seleccionada
-            }
-
-            _isRoutinePickerVisible = !_isRoutinePickerVisible;
-            RoutinePicker.IsVisible = _isRoutinePickerVisible;
+            // Si quieres almacenarlo en BD, puedes enviarlo aquÃ­
+            // SaveCodeToDatabase(uniqueCode);
         }
 
-        // Método para habilitar/deshabilitar los botones
-        private void UpdateButtonStates()
+        //Refrescar QR dinÃ¡mico cada 15 segundos
+        private void StartQrTimer()
         {
-            // Si la rutina está abierta, deshabilitamos el botón de actividad
-            if (isRoutineOpen)
-            {
-                ActivityButton.BackgroundColor = Colors.Gray;
-                ActivityButton.IsEnabled = false;
-            }
-
-
-            // Si la actividad está abierta, deshabilitamos el botón de rutina
-            if (isActivityOpen)
-            {
-                RoutineButton.BackgroundColor = Colors.Gray;
-                RoutineButton.IsEnabled = false;
-            }
-            else
-            {
-                RoutineButton.BackgroundColor = Colors.Black;
-                RoutineButton.IsEnabled = true;
-            }
+            qrTimer = Dispatcher.CreateTimer();
+            qrTimer.Interval = TimeSpan.FromSeconds(15); // â³ Cambia este nÃºmero si quieres otro intervalo
+            qrTimer.Tick += (s, e) => GenerateDynamicQRCode();
+            qrTimer.Start();
         }
 
-        // Mostrar y ocultar el Picker de rutinas
-        private void OnShowRoutineButtons(object sender, EventArgs e)
+        //Cerrar sesiÃ³n
+        private async void OnLogoutClicked(object sender, EventArgs e)
         {
-            DaysButtonsLayout.IsVisible = !DaysButtonsLayout.IsVisible;
+            bool confirm = await DisplayAlert("Cerrar sesiÃ³n", "Â¿EstÃ¡s seguro de que quieres cerrar sesiÃ³n?", "SÃ­", "No");
+            if (confirm)
+            {
+                qrTimer?.Stop();
+                await Shell.Current.GoToAsync("//LoginPage");
+            }
         }
 
-        // Mostrar y ocultar el DatePicker para la actividad
+        //Mostrar/ocultar selector de fecha
         private void OnShowDatePicker(object sender, EventArgs e)
         {
             _isDatePickerVisible = !_isDatePickerVisible;
             ActivityDatePicker.IsVisible = _isDatePickerVisible;
         }
 
-        private async void OnLogoutClicked(object sender, EventArgs e)
+        //Mostrar/ocultar botones de dÃ­as de rutina
+        private void OnShowRoutineButtons(object sender, EventArgs e)
         {
-            bool confirm = await DisplayAlert("Cerrar sesión", "¿Estás seguro de que quieres cerrar sesión?", "Sí", "No");
-
-            if (confirm)
-            {
-                // Redirigir a la página de inicio de sesión
-                await Shell.Current.GoToAsync("//LoginPage");
-            }
+            DaysButtonsLayout.IsVisible = !DaysButtonsLayout.IsVisible;
         }
 
-        // Manejador de eventos para la selección de un día
+        //Navegar a la rutina seleccionada
         private async void OnDaySelected(object sender, EventArgs e)
         {
-            // Obtener el parámetro del comando (el nombre de la página de la rutina)
             var button = sender as Button;
             var routinePage = button?.CommandParameter?.ToString();
 
-            // Realizar la navegación a la página de la rutina correspondiente
-            if (!string.IsNullOrEmpty(routinePage))
+            Page page = routinePage switch
             {
-                Page page = null;
+                "RoutineMondayPage" => new RoutineMondayPage(),
+                "RoutineTuesdayPage" => new RoutineTuesdayPage(),
+                "RoutineWednesdayPage" => new RoutineWednesdayPage(),
+                "RoutineThursdayPage" => new RoutineThursdayPage(),
+                "RoutineFridayPage" => new RoutineFridayPage(),
+                "RoutineSaturdayPage" => new RoutineSaturdayPage(),
+                "RoutineSundayPage" => new RoutineSundayPage(),
+                _ => null
+            };
 
-                switch (routinePage)
-                {
-                    case "RoutineMondayPage":
-                        page = new RoutineMondayPage();
-                        break;
-                    case "RoutineTuesdayPage":
-                        page = new RoutineTuesdayPage();
-                        break;
-                    case "RoutineWednesdayPage":
-                        page = new RoutineWednesdayPage();
-                        break;
-                    case "RoutineThursdayPage":
-                        page = new RoutineThursdayPage();
-                        break;
-                    case "RoutineFridayPage":
-                        page = new RoutineFridayPage();
-                        break;
-                    case "RoutineSaturdayPage":
-                        page = new RoutineSaturdayPage();
-                        break;
-                    case "RoutineSundayPage":
-                        page = new RoutineSundayPage();
-                        break;
-                }
-
-                // Si la página es válida, navegar a ella
-                if (page != null)
-                {
-                    await Navigation.PushAsync(page);
-                }
+            if (page != null)
+            {
+                await Navigation.PushAsync(page);
             }
         }
 
-        // Actualizar las rutinas detalladas según el músculo seleccionado
-        private void UpdateDetailedRoutines()
-        {
-            if (SelectedRoutine == "Pecho")
-            {
-                DetailedRoutines = new ObservableCollection<string>
-                {
-                    "Press inclinado con barra (4x8-10 reps)",
-                    "Press inclinado con mancuernas (3x10-12 reps)",
-                    "Aperturas en banco inclinado (3x12-15 reps)",
-                    "Flexiones en banco inclinado (3x15-20 reps, hasta el fallo)",
-                    "Press de banca plano con barra (4x8 reps)",
-                    "Fondos en paralelas (dips) (4x12 reps)",
-                    "Crossover en poleas (aperturas) (3x12-15 reps)",
-                    "Press declinado con mancuernas o barra (3x10-12 reps)"
-                };
-            }
-            else if (SelectedRoutine == "Tríceps")
-            {
-                DetailedRoutines = new ObservableCollection<string>
-                {
-                    "Fondos en banco (bench dips) (3x10-12 reps)",
-                    "Extensión de tríceps por encima de la cabeza con mancuerna (3x10-12 reps)",
-                    "Jalones de tríceps en polea (agarre recto) (3x10-12 reps)",
-                    "Flexiones cerradas (tipo diamante) (3x8-12 reps)",
-                    "Press francés con barra EZ (4x10-12 reps)",
-                    "Extensiones de tríceps en polea (agarre cuerda) (4x12-15 reps)",
-                    "Press cerrado con barra (4x8 reps)"
-                };
-            }
-            else if (SelectedRoutine == "Bíceps")
-            {
-                DetailedRoutines = new ObservableCollection<string>
-                {
-                    "Curl con barra EZ (peso pesado) (4x6-8 reps)",
-                    "Curl inclinado con mancuernas (3x10 reps)",
-                    "Curl martillo con cuerda (polea) (3x12-15 reps)",
-                    "Curl concentrado (3x12 reps por brazo)",
-                    "Curl con barra recta (ligero) (3x12-15 reps)",
-                    "Curl en predicador (banco Scott) (3x10-12 reps)",
-                    "Curl en polea baja (agarre supino) (3x12-15 reps)"
-                };
-            }
-            else if (SelectedRoutine == "Espalda")
-            {
-                DetailedRoutines = new ObservableCollection<string>
-                {
-                    "Dominadas (agarre amplio) (4x8-10 reps)",
-                    "Jalón al pecho en polea alta (agarre estrecho) (3x12 reps)",
-                    "Remo en máquina (agarre neutro) (3x10-12 reps)",
-                    "Remo con mancuerna (un brazo) (3x10 reps por lado)",
-                    "Pullovers con mancuerna (3x15 reps)",
-                    "Remo con barra T (agarre cerrado) (4x10 reps)",
-                    "Encogimientos con mancuernas (trapecio) (3x12 reps)",
-                    "Remo en polea baja (agarre recto) (4x12 reps)"
-                };
-            }
-            else if (SelectedRoutine == "Pierna")
-            {
-                DetailedRoutines = new ObservableCollection<string>
-                {
-                    "Peso muerto convencional o sumo (4x6 reps)",
-                    "Prensa de piernas (peso pesado) (4x8-10 reps)",
-                    "Zancadas con barra o mancuernas (4x12 reps por pierna)",
-                    "Elevaciones de talones con peso (4x20 reps)",
-                    "Hip thrust con barra (peso moderado) (4x12-15 reps)",
-                    "Curl de pierna acostado (máquina) (3x15 reps)",
-                    "Elevaciones de pantorrillas (con peso adicional) (4x20 reps)",
-                    "Sentadilla búlgara con mancuernas (3x10-12 reps por pierna)"
-                };
-            }
-        }
-
-        // Mostrar un modal con el detalle de la rutina
-        private async void ShowRoutineDetailModal()
-        {
-            // Mostrar el modal con un botón OK
-            await DisplayAlert("Rutina seleccionada", $"Has seleccionado: {SelectedDetailedRoutine}", "OK");
-        }
-
-        // Evento para la selección de la fecha en el DatePicker
+        //seleccionar una fecha
         private async void OnDateSelected(object sender, DateChangedEventArgs e)
         {
-            // Sucursal de ejemplo
-            string branch = "\nPuerto de Mazatlán 4602, México, 85190 Cd. Obregón, Son.";
-
-            // Obtener la fecha y hora
-            string formattedDate = e.NewDate.ToString("yyyy-MMDDTHH:mm:ss") + "S";
-
-            // Modal con la fecha seleccionada y la sucursal
-            await DisplayAlert("Actividad:",
-                $"Fecha de entrada:\n {e.NewDate.ToString("D")}\nSucursal: {branch}",
-                "OK");
+            await DisplayAlert("Fecha seleccionada", $"Has seleccionado: {e.NewDate.ToLongDateString()}", "OK");
         }
     }
 }
