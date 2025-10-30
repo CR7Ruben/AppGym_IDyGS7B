@@ -32,6 +32,10 @@
                             <Label Text="{Binding BloodType}" FontSize="16" />
                         </HorizontalStackLayout>
                         <HorizontalStackLayout>
+                            <Label Text="Alergias: " FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding BloodType}" FontSize="16" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
                             <Label Text="Membresía: " FontSize="16" FontAttributes="Bold"/>
                             <Label Text="{Binding Membership}" FontSize="16" />
                         </HorizontalStackLayout>
@@ -56,12 +60,12 @@
             <!-- Botón de Rutinas -->
             <VerticalStackLayout Spacing="20">
                 <Button x:Name="RoutineButton" 
-                        Text="Rutinas" 
-                        FontSize="16" 
-                        BackgroundColor="Black" 
-                        TextColor="White" 
-                        Clicked="OnShowRoutineButtons"
-                        HorizontalOptions="FillAndExpand"/>
+        Text="Rutinas" 
+        FontSize="16" 
+        BackgroundColor="Black" 
+        TextColor="White" 
+        Clicked="OnShowRoutineButtons"
+        HorizontalOptions="FillAndExpand"/>
 
                 <!-- Días -->
                 <VerticalStackLayout x:Name="DaysButtonsLayout" IsVisible="False" Spacing="8" HorizontalOptions="Center">

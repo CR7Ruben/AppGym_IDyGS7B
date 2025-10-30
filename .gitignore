@@ -1,0 +1,16 @@
+# Archivos y carpetas de Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.pdb
+*.dll
+*.apk
+*.idsig
+
+# Archivos temporales
+*.log
+*.tmp
+*.db
