@@ -27,7 +27,26 @@
                 <VerticalStackLayout>
                     <Label Text="Información: " FontSize="18" FontAttributes="Bold" />
                     <StackLayout Padding="10" Spacing="10">
-                        
+                        <HorizontalStackLayout>
+                            <Label Text="Tipo de sangre: " FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding BloodType}" FontSize="16" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Alergias: " FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding BloodType}" FontSize="16" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Membresía: " FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding Membership}" FontSize="16" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Fecha de finalización: " FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding ExpirationDate}" FontSize="16" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Observaciones: " FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding Observations}" FontSize="16" />
+                        </HorizontalStackLayout>
 
                         <!--QR dinámico -->
                         <VerticalStackLayout HorizontalOptions="Center" Spacing="10" Margin="0,10,0,0">
